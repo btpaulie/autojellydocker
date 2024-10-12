@@ -49,10 +49,11 @@ username=$SMBUSER2
 password=$SMBPW2
 EOF
 
-#set permissions on credential file
+#set permissions on credential files
 chmod 600 /etc/.cred
+chmod 600 /etc/.cred2
 
-#Edit fstab, map xyz to /mnt/smb
+#fstab entries
 read -p "SMB server address? (ex. 10.10.10.100) :" smbSrv
 read -p "Media share name:" mdShr
 read -p "Server data name:" sdShr
