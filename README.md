@@ -4,7 +4,10 @@ Scripts to automate the deployment of a Jellyfin media server in an environment 
 
 ## Prerequisites
 
-`curl` (`apt install curl`)
+- curl
+```
+apt install curl
+```
 
 ## Installation
 
