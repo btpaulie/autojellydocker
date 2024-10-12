@@ -84,5 +84,5 @@ docker-compose up -d
 #create backup script
 cat <<EOF > /srv/backup.sh
 #!/bin/bash
-cp -r /srv/config
+cp -r /srv/config /mnt/mount2/"$hostname"
 EOF
