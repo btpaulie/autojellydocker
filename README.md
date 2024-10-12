@@ -5,5 +5,11 @@ Scripts to automate the deployment of a Jellyfin media server in an environment 
 ## Installation
 
 ```
-curl -O 
+curl -O https://raw.githubusercontent.com/btpaulie/autojellydocker/refs/heads/main/setup.sh
 ```
+
+```
+chmod +x setup.sh && ./setup.sh
+```
+
+
