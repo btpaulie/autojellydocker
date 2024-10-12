@@ -3,7 +3,7 @@
 
 # Updates, upgrades, software
 echo "============================================================================="
-echo "Updating, upgrading, and installing stuff.
+echo "Updating, upgrading, and installing stuff."
 echo "============================================================================="
 apt update -y && apt upgrade -y
 apt install cifs-utils docker-compose -y
@@ -81,8 +81,5 @@ echo "Starting container."
 echo "============================================================================="
 docker-compose up -d
 
-#create backup script
-cat <<EOF > /srv/backup.sh
-#!/bin/bash
-cp -r /srv/config /mnt/mount2/"$hostname"
-EOF
+#cronjob
+echo "0,15,30,45 * * * * cp -r /srv/config /mnt/mount2/\"$hostName\"" >> /etc/cron.d/configbu
