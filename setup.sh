@@ -3,10 +3,10 @@
 
 # Updates, upgrades, software
 echo "============================================================================="
-echo "Updating, upgrading, and installing cifs-utils, docker-compose, and curl"
+echo "Updating, upgrading, and installing stuff.
 echo "============================================================================="
 apt update -y && apt upgrade -y
-apt install cifs-utils curl docker-compose -y
+apt install cifs-utils docker-compose -y
 
 # Set hostname
 echo "============================================================================="
@@ -63,7 +63,7 @@ echo "Mounting drives."
 echo "============================================================================="
 mount -a
 
-# Curl compose
+# Get compose
 echo "============================================================================="
 echo "Retreiving docker-compose from public repo."
 echo "============================================================================="
