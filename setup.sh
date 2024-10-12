@@ -5,32 +5,27 @@
 echo "============================================================================="
 echo "Updating, upgrading, and installing cifs-utils, docker-compose, and curl"
 echo "============================================================================="
-apt update -y
-apt upgrade -y
-apt install cifs-utils -y
-apt install docker-compose -y
-apt install curl -y
+apt update -y && apt upgrade -y
+apt install cifs-utils curl docker-compose -y
 
 # Set hostname
 echo "============================================================================="
 echo "Setting hostname."
 echo "============================================================================="
-read -p "Set hostname:" hostName
-hostname $hostName
+read -pr "Set hostname:" hostName
+hostname "$hostName"
 
 # Create local directories
 echo "============================================================================="
 echo "Creating directories, setting SMB credentials."
 echo "============================================================================="
-mkdir /mnt/mount1
-chmod 777 /mnt/mount1
-mkdir /mnt/mount2
-chmod 777 /mnt/mount2
+mkdir /mnt/mount1 && chmod 777 /mnt/mount1
+mkdir /mnt/mount2 && chmod 777 /mnt/mount2
 
 # Get credentials from user - media
 echo "Credentials for media directory"
-read -p "SMB username:" SMBUSER
-read -p "SMB password:" SMBPW
+read -pr "SMB username:" SMBUSER
+read -pr "SMB password:" SMBPW
 
 # Create credential file - media
 cat <<EOF > /etc/.cred
@@ -40,8 +35,8 @@ EOF
 
 # Get credentials from user - config
 echo "Credentials for server data." 
-read -p "SMB username:" SMBUSER2
-read -p "SMB password:" SMBPW2
+read -pr "SMB username:" SMBUSER2
+read -pr "SMB password:" SMBPW2
 
 # Create credential file - config
 cat <<EOF > /etc/.cred2
@@ -54,9 +49,9 @@ chmod 600 /etc/.cred
 chmod 600 /etc/.cred2
 
 #fstab entries
-read -p "SMB server address? (ex. 10.10.10.100) :" smbSrv
-read -p "Media share name:" mdShr
-read -p "Server data name:" sdShr
+read -pr "SMB server address? (ex. 10.10.10.100) :" smbSrv
+read -pr "Media share name:" mdShr
+read -pr "Server data name:" sdShr
 cat <<EOF > /etc/fstab
 //$smbSrv/$mdShr /mnt/mount1 cifs credentials=/etc/.cred,uid=1000,gid=1000 0 0 #
 //$smbSrv/$sdShr /mnt/mount2 cifs credentials=/etc/.cred2,uid=1000,gid=1000 0 0 #
@@ -70,16 +65,15 @@ mount -a
 
 # Curl compose
 echo "============================================================================="
-echo "Curling docker-compose from public repo."
+echo "Retreiving docker-compose from public repo."
 echo "============================================================================="
-cd /srv
-curl -O https://raw.githubusercontent.com/btpaulie/autojellydocker/refs/heads/main/docker-compose.yml
+wget -P /srv "https://raw.githubusercontent.com/btpaulie/autojellydocker/refs/heads/main/docker-compose.yml"
 
 # Copy config (create this structure manually first)
 echo "============================================================================="
 echo "Pulling config from server (must be created first /mnt/<mountpoint>/<hostname>/config"
 echo "============================================================================="
-cp -r /mnt/mount2/$hostName/config /srv
+cp -r /mnt/mount2/"$hostName"/config /srv
 
 # run docker
 echo "============================================================================="
