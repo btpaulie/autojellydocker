@@ -19,9 +19,9 @@ read -p "Set hostname:" hostName
 hostname $hostName
 
 # Create local directories
-echo "=================================================="
+echo "============================================================================="
 echo "Creating directories, setting SMB credentials."
-echo "=================================================="
+echo "============================================================================="
 mkdir /mnt/mount1
 chmod 777 /mnt/mount1
 mkdir /mnt/mount2
@@ -63,26 +63,26 @@ cat <<EOF > /etc/fstab
 EOF
 
 #Mount drive(s)
-echo "========================================="
+echo "============================================================================="
 echo "Mounting drives."
-echo "========================================="
+echo "============================================================================="
 mount -a
 
 # Curl compose
-echo "========================================="
+echo "============================================================================="
 echo "Curling docker-compose from public repo."
-echo "========================================="
+echo "============================================================================="
 cd /srv
 curl -O https://raw.githubusercontent.com/btpaulie/autojellydocker/refs/heads/main/docker-compose.yml
 
 # Copy config (create this structure manually first)
-echo "========================================="
+echo "============================================================================="
 echo "Pulling config from server (must be created first /mnt/<mountpoint>/<hostname>/config"
-echo "========================================="
+echo "============================================================================="
 cp -r /mnt/mount2/$hostName/config /srv
 
 # run docker
-echo "========================================="
+echo "============================================================================="
 echo "Starting container."
-echo "========================================="
+echo "============================================================================="
 docker-compose up -d
