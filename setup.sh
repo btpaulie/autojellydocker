@@ -12,9 +12,9 @@ apt install docker-compose -y
 apt install curl -y
 
 # Set hostname
-echo "===================="
+echo "============================================================================="
 echo "Setting hostname."
-echo "===================="
+echo "============================================================================="
 read -p "Set hostname:" hostName
 hostname $hostName
 
