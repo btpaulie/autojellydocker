@@ -86,3 +86,9 @@ echo "==========================================================================
 echo "Starting container."
 echo "============================================================================="
 docker-compose up -d
+
+#create backup script
+cat <<EOF > /srv/backup.sh
+#!/bin/bash
+cp -r /srv/config
+EOF
