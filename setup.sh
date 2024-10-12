@@ -79,7 +79,8 @@ cp -r /mnt/mount2/"$hostName"/config /srv
 echo "============================================================================="
 echo "Starting container."
 echo "============================================================================="
-docker-compose up -d
+cd /srv && docker-compose up -d 
 
-#cronjob
-echo "0,15,30,45 * * * * cp -r /srv/config /mnt/mount2/\"$hostName\"" >> /etc/cron.d/configbu
+# cronjob
+echo "0 2 * * * cp -r /srv/config /mnt/mount2/\"$hostName\"" > /etc/cron.d/configbu
+
