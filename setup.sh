@@ -73,7 +73,7 @@ echo "========================================="
 echo "Curling docker-compose from public repo."
 echo "========================================="
 cd /srv
-curl -O https://raw.githubusercontent.com/btpaulie/xyzcompose/refs/heads/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/btpaulie/autojellydocker/refs/heads/main/docker-compose.yml
 
 # Copy config (create this structure manually first)
 echo "========================================="
