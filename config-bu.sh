@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd /srv
-touch backup.sh
 cat <<EOF > /srv/backup.sh
 cp -r /srv/config /mnt/mount2/
 EOF

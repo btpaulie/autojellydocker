@@ -25,3 +25,5 @@ chmod +x setup.sh && ./setup.sh
 
 - [ ] Make data pull optional
 - [ ] Make script generate backup script & edit crontab
+
+TEST
